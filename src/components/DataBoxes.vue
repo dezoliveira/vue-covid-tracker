@@ -1,7 +1,7 @@
 <template>
   <div class="grid md:grid-cols-2 gap-4">
     <!-- Box 1 -->
-    <div class="shadow-md bg-green-500 text-white p-10 text-center rounded d-flex justify-content-center">
+    <div class="shadow-md border bg-green-500 text-white p-10 text-center rounded d-flex justify-content-center">
       <i class="fas fa-heartbeat text-3xl"></i>
       <h3 class="text-3xl text-white-900 font-bold mb-4">
         Casos
