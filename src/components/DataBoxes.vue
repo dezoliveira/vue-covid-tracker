@@ -1,5 +1,5 @@
 <template>
-  <div class="grid md:grid-cols-2 gap-4">
+  <div class="grid md:grid-cols-2 gap-4 mb-4">
     <!-- Box 1 -->
     <div class="shadow-md border bg-green-500 text-white p-10 text-center rounded d-flex justify-content-center">
       <i class="fas fa-heartbeat text-3xl"></i>
@@ -9,12 +9,12 @@
 
       <div class="text-2xl mb-4">
         <span class="font-bold">Novos:</span>
-        {{numberWithCommas(stats.NewConfirmed)}}
+        {{numberFormatter(stats.NewConfirmed)}}
       </div>
 
       <div class="text-2xl mb-4">
         <span class="font-bold">Total:</span>
-        {{numberWithCommas(stats.TotalConfirmed)}}
+        {{numberFormatter(stats.TotalConfirmed)}}
       </div>
 
     </div>
@@ -28,12 +28,12 @@
 
       <div class="text-2xl mb-4">
         <span class="font-bold">Novos:</span>
-        {{numberWithCommas(stats.NewDeaths)}}
+        {{numberFormatter(stats.NewDeaths)}}
       </div>
 
       <div class="text-2xl mb-4">
         <span class="font-bold">Total:</span>
-        {{numberWithCommas(stats.TotalDeaths)}}
+        {{numberFormatter(stats.TotalDeaths)}}
       </div>
 
     </div>
@@ -47,8 +47,14 @@ export default {
   name: 'DataBoxes',
   props: ['stats'],
   methods: {
-    numberWithCommas(x){
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    numberFormatter(x){
+      if(x > 999 && x < 1000000){
+        return (x/1000).toFixed(1) + 'K'; // convert to K for number from > 1000 < 1 million 
+    }else if(x > 1000000){
+        return (x/1000000).toFixed(1) + 'M'; // convert to M for number from > 1 million 
+    }else if(x < 900){
+        return x; // if value < 1000, nothing to do
+    }
     }
   }
 }
